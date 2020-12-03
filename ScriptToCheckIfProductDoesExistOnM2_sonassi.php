@@ -78,11 +78,32 @@ $client->setOptions($options);
 
 //echo $response->getBody();
 
+//@TODO !!!! WE CANT USE CSV BECAUSE OF CSV M1 DATA CORRUPTION !!!!!!!
+/*
 $CSV='Data/m1_export.csv';
 
 $importer = new CsvImporter($CSV,',',true);
 if(!$importer->headerExists('sku')) {echo 'Missing column sku in the CSV.'; exit;}
  foreach($importer->get() as $num=>$ligne) {
-    print_r($ligne);
+    //print_r($ligne);
+    $SKUsFromCSV = $ligne['sku'];//@TODO Store output into an array.
     //echo $ligne['sku'];
  }
+
+ var_dump($ligne['sku']);
+ */
+
+ //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 
+ //@TODO Connect to M1 Using REST API Credentials
+ //@TODO NEEDED TO REFACTOR 
+ //@TODO To Be included ::: git@github.com:SergioAlonsoAD/M1_REST_SCRIPT.git
+ //@TODO Create/Reuse a Class M1REST __constructor($isAdminUser,$adminUrl,$callbackUrl,$host,$consumerKey,$consumerSecret) with pullProducts($sku) and add to Composer 
+ //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 
+
+ $m1RESTProducts = new M1M1REST(@TODO Add Variables with the credentials and urls adn in the class constructor)
+
+  
+
+
+
+  
