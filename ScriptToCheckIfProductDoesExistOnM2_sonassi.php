@@ -76,16 +76,9 @@ $client->setOptions($options);
 
 //$response = $client->send($request);// @TODO Uncomment to pull data from M2
 
-echo $response->getBody();
+//echo $response->getBody();
 
-//Code to get products 
-$url = "{$setup['apiUrl']}/products/1";
-$oauthClient = $setup['oauthClient'];
-$postType = OAUTH_HTTP_METHOD_GET;
-$header = $setup['headers'];
-$setup['oauthClient']->fetch($url, array(), $postType, $header);
-
-$CSV='./Data/m1_export.csv';
+$CSV='Data/m1_export.csv';
 
 $importer = new CsvImporter($CSV,',',true);
 if(!$importer->headerExists('sku')) {echo 'Missing column sku in the CSV.'; exit;}
