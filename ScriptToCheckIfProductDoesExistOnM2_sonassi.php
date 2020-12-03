@@ -94,9 +94,6 @@ if(!$importer->headerExists('sku')) {echo 'Missing column sku in the CSV.'; exit
  */
 
  //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 
- //@TODO Connect to M1 Using REST API Credentials
- //@TODO NEEDED TO REFACTOR 
- //@TODO To Be included ::: git@github.com:SergioAlonsoAD/M1_REST_SCRIPT.git
  //@TODO Create/Reuse a Class PullDataFromMagentoUsingREST 
  /*
     using use Zend\Http\Headers;
@@ -105,6 +102,8 @@ if(!$importer->headerExists('sku')) {echo 'Missing column sku in the CSV.'; exit
     use Zend\Stdlib\Parameters;
     
     __constructor ($isAdminUser,$adminUrl,$callbackUrl,$host,$consumerKey,$consumerSecret) 
+    connect()
+    ...... => @TODO MOVE LINES SCRIPT ABOVE INTO HERE
     pullProducts($sku) ====> Return An Array with A Simple Product
     pullAllProducts()  ===> Return Array With All The Products
     
@@ -116,10 +115,13 @@ if(!$importer->headerExists('sku')) {echo 'Missing column sku in the CSV.'; exit
  $m1RESTProducts = new M1M1REST(@TODO Add Variables with the credentials and urls adn in the class constructor)
  $ArrayM1ProductsToImport = $m1RESTProducts->pullAllProducts();
 
- //@TODO Using Zend Search Lucene Find out the differences between Array containing all the products From M1 and Array containing all the products for M2 
+ //@TODO $ArrayProductsToImport -> Using Zend Search Lucene Find out the differences between Array containing all the products From M1 and Array containing all the products for M2 
 
- //@TODO 
-  
+ //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 
+ //@TODO Create Class AddProductsToMagentoUsingREST
+ //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+ 
+ //@TODO foreach AddProductsToMagentoUsingREST->ImportProducts($ArrayProductsToImport)
 
 
 
