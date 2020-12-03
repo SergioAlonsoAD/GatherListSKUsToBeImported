@@ -64,7 +64,6 @@ $request->setUri($restResourceUri);
 $request->setMethod(Request::METHOD_GET);
 
 
-// create client and get cms block response
 $client = new Client();
 $options = [
     'adapter'   => 'Zend\Http\Client\Adapter\Curl',
@@ -74,11 +73,12 @@ $options = [
 ];
 $client->setOptions($options);
 
-//$response = $client->send($request);// @TODO Uncomment to pull data from M2
+$response = $client->send($request);// @TODO Uncomment to pull data from M2
 
-//echo $response->getBody();
+echo $response->getBody();
 
-//@TODO !!!! WE CANT USE CSV BECAUSE OF CSV M1 DATA CORRUPTION !!!!!!!
+//!!!!! IMPORTANT !!!! WE CANT USE CSV BECAUSE OF CSV M1 DATA CORRUPTION !!!!!!!
+//!!!!! IMPORTANT !!!! IT IS JUST A WASTE OF TIME USING CSVs, To Get imported the products quicker we will pull the data using REST
 /*
 $CSV='Data/m1_export.csv';
 
@@ -97,11 +97,28 @@ if(!$importer->headerExists('sku')) {echo 'Missing column sku in the CSV.'; exit
  //@TODO Connect to M1 Using REST API Credentials
  //@TODO NEEDED TO REFACTOR 
  //@TODO To Be included ::: git@github.com:SergioAlonsoAD/M1_REST_SCRIPT.git
- //@TODO Create/Reuse a Class M1REST __constructor($isAdminUser,$adminUrl,$callbackUrl,$host,$consumerKey,$consumerSecret) with pullProducts($sku) and add to Composer 
+ //@TODO Create/Reuse a Class PullDataFromMagentoUsingREST 
+ /*
+    using use Zend\Http\Headers;
+    use Zend\Http\Request;
+    use Zend\Http\Client;
+    use Zend\Stdlib\Parameters;
+    
+    __constructor ($isAdminUser,$adminUrl,$callbackUrl,$host,$consumerKey,$consumerSecret) 
+    pullProducts($sku) ====> Return An Array with A Simple Product
+    pullAllProducts()  ===> Return Array With All The Products
+    
+    
+    and add to Composer 
+    */
  //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 
 
  $m1RESTProducts = new M1M1REST(@TODO Add Variables with the credentials and urls adn in the class constructor)
+ $ArrayM1ProductsToImport = $m1RESTProducts->pullAllProducts();
 
+ //@TODO Using Zend Search Lucene Find out the differences between Array containing all the products From M1 and Array containing all the products for M2 
+
+ //@TODO 
   
 
 
