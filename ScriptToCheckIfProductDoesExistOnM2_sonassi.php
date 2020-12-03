@@ -1,6 +1,7 @@
 <?php
 
 require '../../../../../vendor/autoload.php'; //@TODO Needed to add __DIR__ Constant to do not be folder dependend. => Adding as a console command to pull magento root constant folder
+require_once './Dependencies/AD_SimpleCSVScript/class.csv.php';
 
 use Zend\Http\Headers;
 use Zend\Http\Request;
@@ -73,7 +74,7 @@ $options = [
 ];
 $client->setOptions($options);
 
-$response = $client->send($request);
+//$response = $client->send($request);// @TODO Uncomment to pull data from M2
 
 echo $response->getBody();
 
@@ -83,3 +84,12 @@ $oauthClient = $setup['oauthClient'];
 $postType = OAUTH_HTTP_METHOD_GET;
 $header = $setup['headers'];
 $setup['oauthClient']->fetch($url, array(), $postType, $header);
+
+$CSV='./Data/m1_export.csv';
+
+$importer = new CsvImporter($CSV,',',true);
+if(!$importer->headerExists('sku')) {echo 'Missing column sku in the CSV.'; exit;}
+ foreach($importer->get() as $num=>$ligne) {
+    print_r($ligne);
+    //echo $ligne['sku'];
+ }
